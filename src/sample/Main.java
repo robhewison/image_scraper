@@ -119,7 +119,7 @@ public class Main extends Application {
             Platform.exit();
         });
 
-        stage.setTitle("Image Ripper v0.1.10");
+        stage.setTitle("Image Ripper v0.1.11");
         stage.setScene(scene);
         stage.show();
     }

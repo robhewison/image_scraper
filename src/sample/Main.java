@@ -79,21 +79,21 @@ public class Main extends Application {
         hbButtons.getChildren().addAll(btn, btn2);
         grid.add(hbButtons, 0, 2, 3, 1);
 
-        final Text actiontarget = new Text();
-        grid.add(actiontarget, 1, 3);
+        final Text actionTarget = new Text();
+        grid.add(actionTarget, 1, 3);
 
         ImageRip rip = new ImageRip(getUrlMain());
 
         TextArea text = new TextArea();
         rip.setWebsite(getUrlMain());
         text.setText("");
-        VBox textdisplay = new VBox();
-        textdisplay.setSpacing(10.0);
+        VBox textDisplay = new VBox();
+        textDisplay.setSpacing(10.0);
         VBox.setVgrow(text, Priority.ALWAYS);
         text.setPrefHeight(100000);
-        textdisplay.getChildren().addAll(text);
+        textDisplay.getChildren().addAll(text);
         int caretPosition = text.caretPositionProperty().get();
-        grid.add(textdisplay, 0, 4, 3, 1);
+        grid.add(textDisplay, 0, 4, 3, 1);
 
         btn.setOnAction(new EventHandler<ActionEvent>() {
 
@@ -110,8 +110,8 @@ public class Main extends Application {
                     text.appendText((String) o);
                 }
                 text.positionCaret(caretPosition);
-                actiontarget.setFill(Color.FIREBRICK);
-                actiontarget.setText(url + " downloaded");
+                actionTarget.setFill(Color.FIREBRICK);
+                actionTarget.setText(url + " downloaded");
             }
         });
 

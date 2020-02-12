@@ -4,7 +4,6 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -70,6 +69,10 @@ public class ImageRip {
         catch(IOException ioe) {
             return "exception";
         }
+    }
+
+    public void downloadImages(ArrayList<String> toDownload) {
+
     }
 
 

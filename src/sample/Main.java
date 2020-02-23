@@ -22,7 +22,7 @@ import java.util.ArrayList;
 
 public class Main extends Application {
 
-    private String urlMain = "https://unsplash.com/t/wallpapers";
+    private String urlMain = "https://unsplash.com/t/wallpapers"; // This site is just a placeholder for testing
     ArrayList<String> urls = new ArrayList<String>();
 
     public void setUrlMain(String urlMain) {

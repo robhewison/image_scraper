@@ -5,7 +5,6 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.*;
@@ -15,7 +14,7 @@ import java.util.Map;
 
 public class ImageRip {
 
-    private static final String IMAGE_HOME = "/Users/robhewison";
+    private static final String IMAGE_HOME = "/Users/PLACEHOLDER"; // Used in commented out code near bottom
     public String website;
 
     public ImageRip(String website) {
@@ -77,6 +76,9 @@ public class ImageRip {
             return "exception";
         }
     }
+    /*
+    // Code in this block comment is a potential solution for downloading images given a URL (found on StackOverflow)
+    // I haven't edited any of the code yet to make it work with the program because I don't know how it works yet
 
     public String downloadImages(String imageUrl, String fileName, String relativePath) {
         String imagePath = null;
@@ -117,4 +119,5 @@ public class ImageRip {
             e.printStackTrace();
         }
     }
+     */
 }

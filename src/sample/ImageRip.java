@@ -8,6 +8,7 @@ import org.jsoup.select.Elements;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.*;
+import java.net.URL;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Map;
@@ -76,6 +77,27 @@ public class ImageRip {
             return "exception";
         }
     }
+
+    // for just one url
+    public void downloadImages(String imageUrl, String fileName) throws IOException {
+        URL url = new URL(imageUrl);
+        InputStream in = new BufferedInputStream(url.openStream());
+        OutputStream out = new BufferedOutputStream(new FileOutputStream(fileName));
+
+        for ( int i; (i = in.read()) != -1; ) {
+            out.write(i);
+        }
+        in.close();
+        out.close();
+    }
+
+    // for url array
+    public void downloadImages(String[] imageUrl, String fileName) throws IOException {
+        for(int i = 0; i < imageUrl.length; i++) {
+            downloadImages(imageUrl[i], fileName); // Either add in a random string generator or add +1 to every iteration of the fileName
+        }
+    }
+
     /*
     // Code in this block comment is a potential solution for downloading images given a URL (found on StackOverflow)
     // I haven't edited any of the code yet to make it work with the program because I don't know how it works yet

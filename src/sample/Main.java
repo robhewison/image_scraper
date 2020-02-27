@@ -22,7 +22,7 @@ import java.util.ArrayList;
 
 public class Main extends Application {
 
-    String versionNumber = "v0.1.12"; // major.minor.patch
+    String versionNumber = "v0.1.13"; // major.minor.patch
     private String webPageURL = "https://unsplash.com/t/wallpapers"; // This site is just a placeholder for testing
     ArrayList<String> imageURLs = new ArrayList<String>();
 

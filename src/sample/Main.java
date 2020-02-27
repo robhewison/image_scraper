@@ -22,15 +22,16 @@ import java.util.ArrayList;
 
 public class Main extends Application {
 
-    private String urlMain = "https://unsplash.com/t/wallpapers"; // This site is just a placeholder for testing
-    ArrayList<String> urls = new ArrayList<String>();
+    String versionNumber = "v0.1.12"; // major.minor.patch
+    private String webPageURL = "https://unsplash.com/t/wallpapers"; // This site is just a placeholder for testing
+    ArrayList<String> imageURLs = new ArrayList<String>();
 
-    public void setUrlMain(String urlMain) {
-        this.urlMain = urlMain;
+    public void setWebPageURL(String webPageURL) {
+        this.webPageURL = webPageURL;
     }
 
-    public String getUrlMain() {
-        return urlMain;
+    public String getWebPageURL() {
+        return webPageURL;
     }
 
     @Override
@@ -49,26 +50,26 @@ public class Main extends Application {
 
         Scene scene = new Scene(grid, 423, 442);
 
-        Text scenetitle = new Text("Website Image Ripper");
-        scenetitle.setFont(Font.font("Helvetica", FontWeight.NORMAL, 30));
+        Text sceneTitle = new Text("Website Image Ripper");
+        sceneTitle.setFont(Font.font("Helvetica", FontWeight.NORMAL, 30));
         HBox title = new HBox();
         title.setAlignment(Pos.CENTER);
-        title.getChildren().addAll(scenetitle);
-        grid.add(scenetitle, 0, 0, 2, 1);
+        title.getChildren().addAll(sceneTitle);
+        grid.add(sceneTitle, 0, 0, 2, 1);
 
         Label urlName = new Label("URL:");
         TextField userTextField = new TextField();
         Button btn = new Button("Download");
         Button btn2 = new Button("Exit");
 
-        HBox textfield = new HBox();
-        textfield.setSpacing(5.0);
+        HBox textField = new HBox();
+        textField.setSpacing(5.0);
         HBox.setHgrow(urlName, Priority.ALWAYS);
         HBox.setHgrow(userTextField, Priority.ALWAYS);
         urlName.setMinWidth(25);
         userTextField.setPrefWidth(100000);
-        textfield.getChildren().addAll(urlName, userTextField);
-        grid.add(textfield, 0, 1, 3, 1);
+        textField.getChildren().addAll(urlName, userTextField);
+        grid.add(textField, 0, 1, 3, 1);
 
         HBox hbButtons = new HBox();
         hbButtons.setSpacing(10.0);
@@ -82,10 +83,10 @@ public class Main extends Application {
         final Text actionTarget = new Text();
         grid.add(actionTarget, 1, 3);
 
-        ImageRip rip = new ImageRip(getUrlMain());
+        ImageRip rip = new ImageRip(getWebPageURL());
 
         TextArea text = new TextArea();
-        rip.setWebsite(getUrlMain());
+        rip.setWebsite(getWebPageURL());
         text.setText("");
         VBox textDisplay = new VBox();
         textDisplay.setSpacing(10.0);
@@ -95,31 +96,26 @@ public class Main extends Application {
         int caretPosition = text.caretPositionProperty().get();
         grid.add(textDisplay, 0, 4, 3, 1);
 
-        btn.setOnAction(new EventHandler<ActionEvent>() {
-
-            @Override
-            public void handle(ActionEvent e) {
-                String url = String.valueOf(userTextField.getText());
-                setUrlMain(url);
-                text.setText("");
-                rip.setWebsite(getUrlMain());
-                urls.addAll(rip.getImages());
-                text.setText(rip.getImageAmount());
-                for (Object o : urls) {
-                    text.appendText("\n");
-                    text.appendText((String) o);
-                }
-                text.positionCaret(caretPosition);
-                actionTarget.setFill(Color.FIREBRICK);
-                actionTarget.setText(url + " downloaded");
+        btn.setOnAction(e -> {
+            setWebPageURL(String.valueOf(userTextField.getText()));
+            text.setText("");
+            rip.setWebsite(getWebPageURL());
+            imageURLs.addAll(rip.getImages());
+            text.setText(rip.getImageAmount());
+            for (Object o : imageURLs) {
+                text.appendText("\n");
+                text.appendText((String) o);
             }
+            text.positionCaret(caretPosition);
+            actionTarget.setFill(Color.FIREBRICK);
+            actionTarget.setText(getWebPageURL() + " downloaded");
         });
 
         btn2.setOnAction((ActionEvent event) -> {
             Platform.exit();
         });
 
-        stage.setTitle("Image Ripper v0.1.11");
+        stage.setTitle("Image Ripper " + versionNumber);
         stage.setScene(scene);
         stage.show();
     }

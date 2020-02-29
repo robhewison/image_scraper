@@ -22,7 +22,7 @@ import java.util.ArrayList;
 
 public class Main extends Application {
 
-    String versionNumber = "v0.1.14"; // major.minor.patch
+    String versionNumber = "v0.1.15"; // major.minor.patch
     private String webPageURL = "https://unsplash.com/t/wallpapers"; // This site is just a placeholder for testing
     ArrayList<String> imageURLs = new ArrayList<String>();
 
@@ -66,7 +66,7 @@ public class Main extends Application {
         textField.setSpacing(5.0);
         HBox.setHgrow(urlName, Priority.ALWAYS);
         HBox.setHgrow(userTextField, Priority.ALWAYS);
-        urlName.setMinWidth(25);
+        urlName.setMinWidth(33);
         userTextField.setPrefWidth(100000);
         textField.getChildren().addAll(urlName, userTextField);
         grid.add(textField, 0, 1, 3, 1);

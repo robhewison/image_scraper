@@ -12,6 +12,7 @@ import java.net.URL;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.Random;
 
 public class ImageRip {
 
@@ -78,7 +79,7 @@ public class ImageRip {
         }
     }
 
-    // for just one url
+    // one URL
     public void downloadImages(String imageUrl, String fileName) throws IOException {
         URL url = new URL(imageUrl);
         InputStream in = new BufferedInputStream(url.openStream());
@@ -91,12 +92,31 @@ public class ImageRip {
         out.close();
     }
 
-    // for url array
+    // array of URLs with fileName
     public void downloadImages(String[] imageUrl, String fileName) throws IOException {
         for(int i = 0; i < imageUrl.length; i++) {
-            downloadImages(imageUrl[i], fileName); // Either add in a random string generator or add +1 to every iteration of the fileName
+            downloadImages(imageUrl[i], fileName);// Either add in a random string generator or add +1 to every iteration of the fileName
+            fileName += "1";
         }
     }
+
+    // array of URLs with random fileName
+    public void downloadImages(String[] imageUrl) throws IOException {
+        for(int i = 0; i < imageUrl.length; i++) {
+            downloadImages(imageUrl[i], randomStringGenerator(9));
+        }
+    }
+
+    public String randomStringGenerator(int length) {
+        String alphabetAndNums = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+        StringBuilder completeString = new StringBuilder();
+        Random random = new Random();
+        for(int i = 0; i < length; i++) {
+            completeString.append(alphabetAndNums.charAt(random.nextInt(alphabetAndNums.length())));
+        }
+        return completeString.toString();
+    }
+
 
     /*
     // Code in this block comment is a potential solution for downloading images given a URL (found on StackOverflow)
